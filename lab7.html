@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+   <title>Lab7-pb2</title>
+<style>
+body{
+	background-color: rgb(100, 200, 150);
+}	
+img{
+	height:200px;
+	width:200px;
+	position:absolute;
+	display:none;
+}
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+
+</script>
+</head>
+<body>
+
+	<button id="play">Play</button>
+	<p id="score"><p>
+	<img id="img1" src="">
+
+<script>
+var score=0;
+
+$(document).ready(function(){
+	$("#play").click(function start() {
+		var j = Math.floor((Math.random() * 10));
+		var images = ['./imagini/elsa.jpg', './imagini/anna.jpg', './imagini/olaf.jpg',
+						'./imagini/rapunzel.jpg','./imagini/bambi.jpg', './imagini/insideout.jpg', './imagini/up.jpg',
+						'./imagini/moana.jpg', './imagini/zootopia.jpg'];
+		
+		$("img").attr('src',images[j]);
+		document.getElementById("img1").style.top = Math.floor((Math.random() * 300))+"px";
+		document.getElementById("img1").style.left = Math.floor((Math.random() * 1000))+"px";
+		
+		if(score < 10){ 
+			var i = Math.floor((Math.random() * 10)+1);
+			$("img").delay(100*i).show(10);
+			$("img").delay(1000).hide(10, start);
+		}
+		else{
+			alert("Ai castigat!");
+			score = 0;
+		}
+	});
+	$("img").click(function() {
+		score += 1;
+		$("#score").text("Your score is: " + score.toString());
+	});
+});
+
+</script>
+</body>
